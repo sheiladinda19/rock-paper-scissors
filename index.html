@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      table {
+        text-align: center;
+        margin: auto;
+        padding: 5px;
+      }
+      button {
+        border: none;
+      }
+      img {
+        width: 150px;
+        background-color: thistle;
+      }
+    </style>
+    <title>Rock Paper scissors</title>
+  </head>
+  <body>
+    <table cellpadding="20" cellspacing="0">
+      <tr>
+        <td colspan="3"><h1>Let's Play</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <button id="scissors">
+            <img src="scissors.png" alt="gunting" />
+          </button>
+        </td>
+        <td>
+          <button id="rock"><img src="rock.png" alt="batu" /></button>
+        </td>
+        <td>
+          <button id="paper"><img src="paper.png" alt="png" /></button>
+        </td>
+      </tr>
+      <tr>
+        <td><h3>Player</h3></td>
+        <td></td>
+        <td><h3>Computer</h3></td>
+      </tr>
+      <tr>
+        <td id="player"></td>
+        <td><h1 style="font-size: xx-large; font-weight: bolder">Vs</h1></td>
+        <td id="computer"></td>
+      </tr>
+      <tr>
+        <td colspan="3"><h2 id="decision">RESULT</h2></td>
+      </tr>
+    </table>
+
+    <script>
+      $("#scissors").on("click", function () {
+        var computer = computerChoice();
+        var result = compare("scissors", computer);
+        var computer = computer + ".png";
+        $("#player").html('<img src="scissors.png" alt="player" />');
+        $("#computer").html('<img src="' + computer + '" alt="computer" />');
+        console.log(player);
+        console.log(computer);
+        $("#decision").html(result);
+      });
+
+      $("#paper").on("click", function () {
+        var computer = computerChoice();
+        var result = compare("paper", computer);
+        var computer = computer + ".png";
+        $("#player").html('<img src="paper.png" alt="player" />');
+        $("#computer").html('<img src="' + computer + '" alt="computer" />');
+        console.log(player);
+        console.log(computer);
+        $("#decision").html(result);
+      });
+
+      $("#rock").on("click", function () {
+        var computer = computerChoice();
+        var result = compare("rock", computer);
+        var computer = computer + ".png";
+        $("#player").html('<img src="rock.png" alt="player" />');
+        $("#computer").html('<img src="' + computer + '" alt="computer" />');
+        console.log(player);
+        console.log(computer);
+        $("#decision").html(result);
+      });
+
+      var compare = function (me, opponent) {
+        if (me === "rock") {
+          if (opponent === "rock") {
+            return "TIE";
+          } else if (opponent === "scissors") {
+            return "PLAYER WIN";
+          } else if (opponent === "paper") {
+            return "PLAYER LOST";
+          }
+        } else if (me === "paper") {
+          if (opponent === "paper") {
+            return "TIE";
+          } else if (opponent === "rock") {
+            return "PLAYER WIN";
+          } else if (opponent === "scissors") {
+            return "PLAYER LOST";
+          }
+        } else if (me === "scissors") {
+          if (opponent === "scissors") {
+            return "TIE";
+          } else if (opponent === "paper") {
+            return "PLAYER WIN";
+          } else if (opponent === "rock") {
+            return "PLAYER LOST";
+          }
+        } else {
+          return "That doesn't make any sense!";
+        }
+      };
+      var computerChoice = function () {
+        var random = Math.random();
+        if (random < 0.333) {
+          return "rock";
+        } else if (random < 0.67777) {
+          return "paper";
+        } else {
+          return "scissors";
+        }
+      };
+    </script>
+  </body>
+</html>
